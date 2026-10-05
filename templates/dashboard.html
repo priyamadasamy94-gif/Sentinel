@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sentinel — Local Threat Monitor</title>
+  <!-- Inline background colour prevents a white flash before style.css loads -->
+  <style>html,body{background:#0d1117;color:#c9d1d9}</style>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="logo">SENTINEL</span><small>v1.0</small></div>
+    <div class="clockbox"><span id="clock">--:--:--</span><span class="sep">·</span><span id="lastScan">Last scan: —</span></div>
+    <div class="actions">
+      <span id="mockBadge" class="mock-badge" hidden>MOCK MODE</span>
+      <button id="scanBtn" class="btn"><span class="spinner" hidden></span><span class="label">Scan Now</span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="stats">
+      <div class="card stat crit"><div class="icon">⛔</div><div class="num" id="n-critical">0</div><div class="lbl">CRITICAL</div></div>
+      <div class="card stat high"><div class="icon">🔥</div><div class="num" id="n-high">0</div><div class="lbl">HIGH</div></div>
+      <div class="card stat med"><div class="icon">⚠️</div><div class="num" id="n-medium">0</div><div class="lbl">MEDIUM</div></div>
+      <div class="card stat low"><div class="icon">✅</div><div class="num" id="n-low">0</div><div class="lbl">LOW</div></div>
+    </section>
+
+    <section class="card chart-panel">
+      <h2>Events per Hour (Last 24h)</h2>
+      <div class="chart-wrap"><canvas id="chart"></canvas></div>
+    </section>
+
+    <section class="card">
+      <div class="panel-head">
+        <h2>Alerts</h2>
+        <select id="sevFilter" aria-label="Filter by severity">
+          <option value="">All Severities</option>
+          <option>CRITICAL</option><option>HIGH</option><option>MEDIUM</option><option>LOW</option>
+        </select>
+      </div>
+      <div class="table-scroll">
+        <table id="alerts">
+          <thead><tr><th>Time</th><th>Severity</th><th class="c-cat">Category</th><th>Description</th><th class="c-mitre">MITRE</th><th>Action</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div id="empty" class="empty" hidden>No alerts yet. Click Scan Now.</div>
+    </section>
+
+    <section class="two-col">
+      <div class="card">
+        <h2>Open Ports</h2>
+        <div class="table-scroll">
+          <table id="ports"><thead><tr><th>Port</th><th>Process</th><th class="c-pid">PID</th><th>Status</th></tr></thead><tbody></tbody></table>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Running Processes</h2>
+        <div class="table-scroll tall">
+          <table id="procs"><thead><tr><th class="c-pid">PID</th><th>Name</th><th>CPU%</th><th class="c-mem">Memory</th><th>Status</th></tr></thead><tbody></tbody></table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Sentinel v1.0 — Local Threat Monitor</span>
+    <a href="https://github.com/your-username/sentinel" target="_blank" rel="noopener">GitHub</a>
+    <span id="refreshed">Last refresh: —</span>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  <script>window.Chart || document.write('<script src="/static/chart.umd.js"><\/script>')</script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

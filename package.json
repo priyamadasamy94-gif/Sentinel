@@ -1,0 +1,20 @@
+{
+  "name": "sentinel",
+  "version": "1.0.0",
+  "description": "Sentinel — Local Threat Monitor (mini SIEM for one computer)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "better-sqlite3": "^11.3.0",
+    "express": "^4.19.2",
+    "find-process": "^1.4.7",
+    "node-cron": "^3.0.3",
+    "ps-list": "^8.1.1"
+  },
+  "optionalDependencies": {
+    "winevtx": "^0.1.2"
+  }
+}

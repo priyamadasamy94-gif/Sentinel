@@ -1,0 +1,6 @@
+node_modules/
+sentinel.db
+sentinel.db-shm
+sentinel.db-wal
+*.log
+.env
